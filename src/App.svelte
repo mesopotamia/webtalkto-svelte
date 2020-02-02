@@ -33,8 +33,11 @@
 	$: isNotAuthenticated = !isAuthenticated;
 </script>
 
-<div class="bg-light-gray flex justify-end ph2 pv3">
-	<Authentication isAuthenticated={isAuthenticated} on:authentication={handleLogout}/>
+<div class="bg-light-gray flex justify-between ph4 pv3">
+	<h1 class="f3">Best Bank of Canada</h1>
+	<div class="flex items-center">
+		<Authentication isAuthenticated={isAuthenticated} on:authentication={handleLogout}/>
+	</div>
 </div>
 {#if isNotAuthenticated}
 	<AuthenticationForm on:credentials={handleAuthentication} wrongCredentials={wrongCredentials}/>
