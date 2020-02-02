@@ -1,3 +1,4 @@
+<link href="./node_modules/tachyons/css/tachyons.min.css" type="text/css">
 <script>
 	import Authentication from './Authentication.svelte';
 	let isAuthenticated = true;
@@ -7,6 +8,9 @@
 	$: loggedOut = !isAuthenticated;
 </script>
 
-<Authentication isAuthenticated={isAuthenticated} on:authentication={handleAuthentication}/>
+<div class="bg-light-gray flex justify-end ph2 pv3">
+	<Authentication isAuthenticated={isAuthenticated} on:authentication={handleAuthentication}/>
+</div>
+
 <div>Logged out: {loggedOut}</div>
 

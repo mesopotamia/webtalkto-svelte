@@ -12,9 +12,9 @@
 </script>
 
 {#if isAuthenticated}
-    <h1>You are logged in</h1>
+    <h1 class="f4 ma0 pr3">You are logged in</h1>
     <button on:click={logout}>Log Out</button>
 {:else}
-    <h1>You are logged out</h1>
+    <h1 class="f4 ma0 pr3">You are logged out</h1>
     <button on:click={login}>Log In</button>
 {/if}
