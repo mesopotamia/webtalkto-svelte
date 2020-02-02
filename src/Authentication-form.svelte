@@ -14,16 +14,18 @@
     export let wrongCredentials;
 </script>
 
-<form on:submit|preventDefault={performLogin} class=" pa2 mt3">
+<form on:submit|preventDefault={performLogin} class=" pa4 mt3">
     <h2>Sign On</h2>
     <label class="pb2">Username</label>
     <input bind:value={username}/>
     <label class="pb2">Password</label>
     <input bind:value={password}/>
-    <div>
+    <div class="mt2">
         <button>Log in</button>
     </div>
     {#if wrongCredentials}
-        You've entered the wrong credentials
+        <div class="red mt2">
+            You've entered the wrong credentials
+        </div>
     {/if}
 </form>
