@@ -1,20 +1,12 @@
 <script>
-	let name = 'world';
-	let loggedIn = false;
-	function login() {
-		loggedIn = true;
-	}
-	const logout = () => {
-		loggedIn = false
+	import Authentication from './Authentication.svelte';
+	let isAuthenticated = true;
+	const handleAuthentication = ({detail: isAuthenticatedEvent}) => {
+		isAuthenticated = isAuthenticatedEvent;
 	};
+	$: loggedOut = !isAuthenticated;
 </script>
 
-{#if loggedIn}
-	<h1>You are logged in</h1>
-	<button on:click={logout}>Log Out</button>
-	{:else}
-	<h1>You are logged out</h1>
-	<button on:click={login}>Log In</button>
-{/if}
-
+<Authentication isAuthenticated={isAuthenticated} on:authentication={handleAuthentication}/>
+<div>Logged out: {loggedOut}</div>
 
