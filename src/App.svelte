@@ -1,16 +1,27 @@
 <link href="./node_modules/tachyons/css/tachyons.min.css" type="text/css">
 <script>
 	import Authentication from './Authentication.svelte';
-	let isAuthenticated = true;
-	const handleAuthentication = ({detail: isAuthenticatedEvent}) => {
-		isAuthenticated = isAuthenticatedEvent;
+	import AuthenticationForm from './Authentication-form.svelte';
+	let isAuthenticated = false;
+	let wrongCredentials = false;
+	const handleAuthentication = ({detail: {username, password}}) => {
+		if (username === 'sergey' && password === 'webtalkto') {
+			isAuthenticated = true;
+			wrongCredentials = false;
+		} else {
+			wrongCredentials = true;
+		}
 	};
-	$: loggedOut = !isAuthenticated;
+	const handleLogout =() => {
+		isAuthenticated = false;
+	};
+	$: isNotAuthenticated = !isAuthenticated;
 </script>
 
 <div class="bg-light-gray flex justify-end ph2 pv3">
-	<Authentication isAuthenticated={isAuthenticated} on:authentication={handleAuthentication}/>
+	<Authentication isAuthenticated={isAuthenticated} on:authentication={handleLogout}/>
 </div>
-
-<div>Logged out: {loggedOut}</div>
+{#if isNotAuthenticated}
+	<AuthenticationForm on:credentials={handleAuthentication} wrongCredentials={wrongCredentials}/>
+{/if}
 
